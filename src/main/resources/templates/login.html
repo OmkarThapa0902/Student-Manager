@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body  th:replace="~{base::layout(~{::section})}">
+    <section>
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img style="width:80px" th:src="@{/img/membership.png}" alt=""/>
+                            </div>
+                            <h3 class="text-center text-info">Login</h3>
+                            
+                            <div th:if="${param.error}" class="alert alert-danger">
+                                Invalid username or password
+                            </div>
+                            
+                            <div th:if="${param.logout}" class="alert alert-success">
+                                You have been logged out
+                            </div>
+                            
+                            <form id="login-form" th:action="@{/dologin}" method="post">
+                                <div class="form-group">
+                                    <label for="username" class="text-info">Username:</label>
+                                    <input type="text" name="username" id="username" class="form-control" required="required">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="password" class="text-info">Password:</label>
+                                    <input type="password" name="password" id="password" class="form-control" required="required">
+                                </div>
+                                
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="remember-me" name="remember-me">
+                                    <label class="form-check-label text-info" for="remember-me">Remember me</label>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-info btn-md">Login</button>
+                                    <button type="reset" class="btn btn-warning btn-md">Forget Password</button>
+                                </div>
+                                
+                                <div class="text-right mt-2">
+                                    <a href="/signup" class="text-info">Register here</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
